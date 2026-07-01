@@ -1,6 +1,8 @@
 import pytest
 
 from game import Game
-def test_game():
+
+def test_exception_when_input_is_none():
     game = Game()
-    assert 1 == 1
+    with pytest.raises(TypeError):
+        game.guess(None)
