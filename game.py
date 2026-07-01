@@ -1,11 +1,25 @@
 from typing import Any
+
+import game_result
 from game_result import GameResult
 
 class Game:
+    def __init__(self):
+        self._questions = ""
 
-    def guess(self, guessNumber) -> GameResult:
-        self._assert_illegal_value(guessNumber)
-        return GameResult(True, 3, 0)
+    @property
+    def questions(self):
+        raise AttributeError("Did not Readable")
+
+    @questions.setter
+    def questions(self, value):
+        self._questions = value
+
+    def guess(self, guess_number) -> GameResult | None:
+        self._assert_illegal_value(guess_number)
+        if guess_number == self._questions:
+            return GameResult(True, 3, 0)
+        return None
 
     def _assert_illegal_value(self, guessNumber: str):
         if guessNumber is None:
